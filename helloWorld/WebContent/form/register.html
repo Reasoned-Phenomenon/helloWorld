@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>form/register.html</title>
+</head>
+<body>
+    
+    <table>
+        <thead>
+            <th colspan="4">회원가입</th>
+        </thead>
+
+        <tbody>
+            <tr>
+            <td>아이디</td>
+            <td colspan="2"><form>
+                <input type="text">
+                <button type="button">중복확인</button>
+            </form></td>
+            </tr>
+
+            <tr>
+                <td rowspan="2" style="vertical-align: top;">비밀번호</td>
+                <td colspan="3"><form><input type="password" size="30"></form></td>
+            </tr>
+
+            <tr>
+                <td colspan="3"><form><input type="password" size="30" placeholder="비밀번호 재확인"></form></td>
+            </tr>
+
+            <tr>
+                <td>이름</td>
+                <td colspan="3"><form ><input type="text" size="30"></form></td>
+            </tr>
+
+            <tr>
+                <td rowspan="3" style="vertical-align: top;">주소</td>
+                <td colspan="2">
+                    <form>
+                        <input type="text" size="5">-<input type="text" size="5">
+                        <button type="button" style="width: 70px;">우편번호</button>
+                </form></td>
+            </tr>
+
+            <tr>
+                <td><form><input type="text" size="30"></form></td>
+            </tr>
+
+            <tr>
+                <td><form><input type="text" size="30"></form></td>
+            </tr>
+
+            <tr>
+                <td>휴대전화</td>
+                <td><form >
+                    <select name="phone" style="width: 50px;">
+                        <option value="010">010</option>
+                        <option value="011">011</option>
+                        <option value="070">070</option>
+                    </select>
+                    <input type="text" size="8">
+                    <input type="text" size="8">
+                </form></td>
+            </tr>
+
+            <tr>
+                <td>전화번호</td>
+                <td><form >
+                    <select name="number" style="width: 50px;">
+                        <option value="010">010</option>
+                        <option value="054">011</option>
+                        <option value="053">070</option>
+                    </select>
+                    <input type="text" size="8">
+                    <input type="text" size="8">
+                </form></td>
+            </tr>
+
+            <tr>
+                <td>이메일</td>
+                <td><form>
+                    <input type="text" size="15">
+                    <select name="email">
+                        <option value="naver">@naver.com</option>
+                        <option value="daum">@daum.net</option>
+                        <option value="gmail">@gmail.com</option>
+                    </select>
+                </form></td>
+            </tr>
+
+            <tr>
+                <td rowspan="2" style="vertical-align: top;">생년월일</td>
+                <td><form >
+                    <input type="radio" name="select" value="sun" checked>양
+                    <input type="radio" name="select" value="moon" >음
+                </form></td>
+            </tr>
+
+            <tr>
+                <td><form >
+                    <select name="year" style="width: 90px;">
+                        <option value="2014">2014</option>
+                        <option value="2013">2013</option>
+                        <option value="2012">2012</option>
+                    </select>
+                    <select name="month" style="width: 73px;">
+                        <option value="01">01</option>
+                        <option value="02">02</option>
+                        <option value="03">03</option>
+                    </select>
+                    <select name="day" style="width: 73px;">
+                        <option value="01">01</option>
+                        <option value="02">02</option>
+                        <option value="03">03</option>
+                    </select>
+                </form></td>
+            </tr>
+            <tr>
+                <td colspan="4"><form>
+                    <input type="checkbox" name="agree" value="email"> 이메일을 수신합니다.<br>
+                    <input type="checkbox" name="agree" value="SMS"> SMS를 수신합니다.
+                </form></td>
+            </tr>
+
+            <tr>
+                <td colspan="4"><form>
+                    <button type="button" name="admit" value="exit" style="color: white; width:150px; background-color: black;">가입취소</button>
+                    <button type="button" name="admit" value="enter" style="color: white; width:150px; background-color: red;">회원가입</button>
+                </form></td>
+            </tr>
+
+
+        </tbody>
+    </table>
+</body>
+</html>

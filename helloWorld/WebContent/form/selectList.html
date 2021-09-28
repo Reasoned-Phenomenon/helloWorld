@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>form/selectList</title>
+</head>
+<body>
+    <!-- 174예제 -->
+    <form action="">
+        <label for=""> 전공분야를 선택하세요.
+            <select name="major">
+                <optgroup label="computer">
+                    <option>Software</option>
+                    <option>Robot</option>
+                    <option>System</option>
+                </optgroup>
+                <optgroup label="Language">
+                    <option selected>Korean</option>
+                    <option>English</option>
+                    <option>China</option>
+                    <option>Germany</option>
+                </optgroup>
+                <optgroup label="business">
+                    <option>Service</option>
+                    <option>Education</option>
+                    <option>Commuication</option>
+                    <option>Marketing</option>
+                </optgroup>
+            </select>
+            <p></p>
+            <input type="submit" value="선택">
+            <input type="reset" value="다시선택">
+        </label>
+    </form>
+
+    <!-- 175예제 -->
+    <h3>선택사항을 직접 입력하세요.</h3>
+    <form>
+        <label for="">전공분야를 입력하세요
+            <input type="text" list="majorlist" name="major">
+            <datalist id="majorlist">
+                <option value="Software">소프트웨어</option>
+                <option value="Robot">로봇</option>
+                <option value="System">시스템</option>
+                <option value="Service">서비스</option>
+                <option value="Education">교육</option>
+            </datalist>
+            <p></p>
+            <input type="submit" value="완료">
+            <input type="reset" value="다시작성">
+        </label>
+    </form>
+</body>
+</html>
