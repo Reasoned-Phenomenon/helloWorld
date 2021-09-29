@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css/pseudo1.html</title>
+    <style>
+        /* h4:nth-child(2n) {
+            background-color: pink;
+        } */
+        h4:nth-of-type(2n) {
+            background-color: red;
+        }
+        h4:last-child {
+            background-color: green;
+        }
+        p:only-of-type {
+            background-color: skyblue;
+        }
+        p:empty {
+            color: blue;
+            border: 1px dotted red;
+        }
+
+        :root{
+            background-color: yellow;
+        }
+
+        input:checked+p {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <h3>웹프로그래밍</h3>
+    <h4>웹프로그래밍</h4>
+    <h4>웹프로그래밍</h4>
+    <h4>웹프로그래밍</h4>
+    <h4>웹프로그래밍</h4>
+    <h4>웹프로그래밍</h4>
+    <h4>웹프로그래밍</h4>
+    <h4>웹프로그래밍</h4>
+    <h4>웹프로그래밍</h4>
+    <h4>웹프로그래밍</h4>
+    
+    <div>div
+        <p>웹프로그래밍1</p>
+    </div>
+    <p></p>
+    <p>웹프로그래밍2</p>
+    
+    <input type="checkbox" name="" id="">
+    <p>체크박스</p>
+
+<!-- div.parent > div -->
+<!-- div.child > div -->
+<!-- div.parent div -->
+<!-- div.parent p -->
+<!-- div.parent ~ p -->
+    <div class="parent">
+        <p>brother</p>
+        <div class="child">
+            <div class="grandchildren">
+                <p class="grand">test</p>
+            </div>
+        </div>
+        <p>child</p>
+    </div>
+</body>
+</html>

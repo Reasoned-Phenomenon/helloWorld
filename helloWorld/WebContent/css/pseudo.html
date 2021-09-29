@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css/pseudo.html</title>
+
+    <style>
+        a {
+            font-family: 'Courier New', Courier, monospace;
+            display: block;
+            width: 200px;
+            border: 2px solid red;
+        }
+        a:link {
+            color: blue; text-decoration: underline;
+        }
+        a:visited {
+            color: pink;
+        }
+        a:hover {
+            color: red;
+            background-color: yellow;
+            text-decoration: overline;
+        }
+        a:active {
+            color: teal;
+            font-weight: bold;
+            background-color: yellow;
+        }
+
+        div {
+            display: inline-block;
+        }
+
+        div.d1:hover {
+            background-color: yellow;
+            width: 300px;
+            transition: all 1.5s linear 0.5s;
+        }
+        
+        div.d2:hover {
+            background-color: skyblue;
+        }
+
+    </style>
+</head>
+<body>
+    <h2>Pseudo Class</h2>
+    <p>
+        <a href="http://www.w3.org">W3C 사이트입니다.</a>
+        <a href="https://www.daum.net">다음 사이트입니다.</a>
+    </p>
+
+    <div class="d1">
+        <h3>가상 1 클래스</h3>
+    </div>
+
+    <div class="d2">
+        <h3>가상 2 클래스</h3>
+    </div>
+
+</body>
+</html>
