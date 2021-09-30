@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css_advanced/flex.html</title>
+    <style>
+        .flex-container {
+          display: flex;
+          background-color: DodgerBlue;
+          flex-direction: column;
+          text-align: center;
+        }
+        
+        .flex-container .header {
+          background-color: #f1f1f1;
+          margin: 10px;
+          padding: 20px;
+          font-size: 30px;
+        }
+
+        .middle {
+          display: flex;
+          background-color: chocolate;
+          flex-direction: row;
+          text-align: center;
+        }
+
+          .nav {
+            margin: 10px;
+            padding: 20px;
+            font-size: 30px;
+          }
+
+          .section {
+            margin: 10px;
+            padding: 20px;
+            font-size: 30px;
+          }
+
+          .aside {
+            margin: 10px;
+            padding: 20px;
+            font-size: 30px;
+          }
+
+        .flex-container .footer {
+          background-color: #f1f1f1;
+          margin: 10px;
+          padding: 20px;
+          font-size: 30px;
+        }
+
+        </style>
+</head>
+<body>
+    <div class="flex-container">
+        <!-- header -->
+        <div class="header">&lt;header&gt;</div>
+        <!-- nav, section, aside -->
+        <div class="middle">
+            <div class="nav">&lt;nav&gt;</div>
+            <div class="section">&lt;secction&gt;</div>
+            <div class="aside">&lt;aside&gt;</div>
+        </div>
+        <!-- footer -->
+        <div class="footer">&lt;footer&gt;</div>
+    </div>
+</body>
+</html>

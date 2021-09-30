@@ -8,8 +8,10 @@
     <style>
         * {
             box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
         }
-
+        
         header {
             border: 1px solid black;
             border-radius: 3px;
@@ -18,19 +20,21 @@
             margin: 5px;
             clear: both;
             text-align: center; 
+            vertical-align: middle;
+            line-height: 100px;
         }
            
-
         nav {
             float: left;
             border: 1px solid black;
             border-radius: 3px;
             background-color: olive;
-            width: 23%;
+            width: 22%;
             height: 300px;
             margin: 5px;
             text-align: center;
             position: absolute;
+            padding: 2%;
         }
 
         section {
@@ -42,10 +46,15 @@
             text-align: center;
             float: left;
             margin: 5px;
-            position: absolute;
-            left: 24.6%;
+            position: relative;
+            left: 24.4%;
         }
-            section > header {
+            .innersection {
+                padding: 2%;
+                padding-bottom: 1px;
+                margin-bottom: 1px;
+            }
+            .innerheader {
                 background-color: palegreen;
                 border-radius: 3px;
                 width: 70%;
@@ -56,22 +65,23 @@
                 border: 1px solid black;
                 margin: 3px;
                 height: 15%;
-                margin-top: 10px;
+                padding: 2%;
             }
-            section > article {
+            .article {
                 background-color: palegreen;
                 border-radius: 3px;
                 width: 70%;
-                height: 55%;
+                height: 160px;
                 text-align: center;
                 position: relative;
                 left: 15%;
                 right: 15%;
                 border: 1px solid black;
                 margin: 3px;
-                
+                vertical-align: middle;
+                line-height: 160px;
             }
-            section > footer {
+            .innerfooter {
                 background-color: palegreen;
                 border-radius: 3px;
                 width: 70%;
@@ -83,18 +93,21 @@
                 margin: 3px;
                 height: 15%;
                 margin-bottom: 10px;
+                padding: 2%;
             }
+
         aside {
-            float: right;
+            float: left;
             border: 1px solid black;
             border-radius: 3px;
             background-color: olive;
-            width: 23%;
+            width: 22%;
             height: 300px;
             margin: 5px;
             text-align: center;
             position: absolute;
             left: 75.5%;
+            padding: 2%;
         }
 
         footer {
@@ -102,45 +115,48 @@
             border-radius: 3px;
             background-color: orange;
             margin: 5px;
-            overflow: auto;
-            height: 30%;
+            /* height: 30%; */
+            height: 100px;
             clear: both;
+            text-align: center;
+            vertical-align: middle;
+            line-height: 100px;
         }
         
     </style>
 </head>
+
 <body>
     <!-- 3층 -->
-    <header>
-        <div class="header">&lt;header&gt;</div>
+    <header class="header">
+        <div>&lt;header&gt;</div>
     </header>
 
     <!-- 2층 -->
-    <nav>
-        <div class="nav">&lt;nav&gt;</div>
+    <nav class="nav">
+        <div>&lt;nav&gt;</div>
     </nav>
 
-    <section>
-        <div class="section">&lt;section&gt;</div>
-        <header>
-            <div class="innerheader">&lt;header&gt;</div>
-        </header>
-        <article>
-            <div class="article">&lt;article&gt;</div>
-        </article>
-        <footer>
-            <div class="innerfooter">&lt;footer&gt;</div>
-        </footer>
+    <section class="section">
+        <div class="innersection">&lt;section&gt;</div>
+        <div class="innerheader">
+            &lt;header&gt;
+        </div>
+        <div class="article">
+            &lt;article&gt;
+        </div>
+        <div class="innerfooter">
+            &lt;footer&gt;
+        </div>
     </section>
 
-    <aside>
-        <div class="aside">&lt;aside&gt;</div>
+    <aside class="aside">
+       <div>&lt;aside&gt;</div>
     </aside>
 
     <!-- 1층 -->
-
-    <footer>
-        <div class="footer">&lt;footer&gt;</div>
+    <footer class="footer">
+       <div>&lt;footer&gt;</div> 
     </footer>
 </body>
 </html>
