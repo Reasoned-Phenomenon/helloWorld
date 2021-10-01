@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript/array.html</title>
+</head>
+<body>
+    <input type="text" id="inputValue" value="test">
+    <p>test</p>
+    <button id="btn" onclick="addArray()">추가하기</button>
+    <button id="btn2" onclick="removeAry()">제거하기</button>
+
+    <ul id="list">
+
+    </ul>
+    <script>
+        const inputAry = [];
+        /*
+        inputAry[2] = null; //a,b,null,d,e,f 
+        //뒤에 있는 값을 앞으로 당기는 메소드 :
+        inputAry.splice(2,2, 'd','e');//2번부터 2개를 d,e로 바꿈
+        inputAry.splice(2,1);//2번 1개를 지움.
+        //원하는 값이 몇번째에 있는지 알아내야함.
+        */
+
+        function showList() {
+            //화면에 추가.
+            let ulTag = document.getElementById('list');
+            let tag = '';
+            for (let i = 0 ; i<inputAry.length;i++){
+                tag += '<li>' + inputAry[i] + '</li>'
+            }
+            ulTag.innerHTML = tag; //<ul><li>test</li></ul>
+        }
+
+        function addArray() {
+            let input = document.getElementById('inputValue');
+            let iValue = input.value;
+            //배열추가
+            //0,null,"" -> false
+            //" " , 값이 있으면 -> true
+            //비정상적인 처리=>메세지.
+            if(!iValue) {
+                alert('값을 입력하세요.');
+                return;
+            } 
+            
+            inputAry.unshift(iValue);
+            showList();
+            input.value='';
+            input.focus();
+            console.log(inputAry);
+        }
+
+        function removeAry() {
+            let input = document.getElementById('inputValue');
+            let iValue = input.value;
+            if (!iValue) {
+                alert('값을 입력하세요.');
+                return;
+            }
+            console.log(inputAry.indexOf(iValue))
+            inputAry.splice(inputAry.indexOf(iValue),1);
+            // inputAry.shift();
+            showList();
+        }
+
+    </script>
+</body>
+</html>

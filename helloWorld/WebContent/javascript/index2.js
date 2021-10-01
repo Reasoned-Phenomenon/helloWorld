@@ -21,6 +21,18 @@ let newObj = createObject('유상우', 23, 85);
 console.log('이름: ' + newObj.name + ' 나이: ' + newObj.age + ' 점수 :'+newObj.score+' 합격여부 :'+newObj.pass);
 
 //TR 태그 생성 연습.
-function creatTr() {
-
+function creatTr(person) {
+    let tag = '<tr>';
+    for (let field in person) {
+        tag += '<td>' + person[field] + '</td>';
+    }
+    if(person.score >= 60) {
+        tag += '<td class="pass">pass</td>';
+    } else {
+        tag += '<td class="fail">fail</td>';
+    }
+    tag += '</tr>'
+    return tag;
 }
+
+createTable();

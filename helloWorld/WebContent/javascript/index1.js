@@ -14,9 +14,10 @@ const han = {
 const yun = {
     name: '윤희성',
     age: 22,
-    score: 88
+    score: 58
 }
 
+//hoisting 끌어올림
 
 // const persons = [choi, han, yun];
 // document.write('<table border="1">');
@@ -74,14 +75,20 @@ function createTable() {
     let tag = '<table border="1"><thead><tr><th>이름</th><th>나이</th><th>점수</th><th>합격여부</th></tr></thead><tbody>';
     
     for(let person of persons) {
-        tag +='<tr>';
+
+        if (person.score >= 90) {
+            tag +='<tr class="pass">';
+        } else {
+            tag +='<tr class="fail">';
+        }
+        
         for(let field in person) { //field 갯수 만큼
             tag += '<td>'+person[field]+'</td>';
         }
         if(person.score >= 90) {
-            tag += '<td>Pass</td>'
+            tag += '<td class="pass">Pass</td>'
         } else {
-            tag += '<td>Fail</td>'
+            tag += '<td class="fail">Fail</td>'
         }
         tag +='</tr>';
     }
@@ -89,4 +96,33 @@ function createTable() {
     document.write(tag);
 }
 
-createTable();
+
+function createTable() {
+    const persons = [choi, han, yun];
+    let tag = '<table border="1"><thead><tr><th>이름</th><th>나이</th><th>점수</th><th>합격여부</th></tr></thead><tbody>';
+    
+        for(let person of persons) {
+
+    //     if (person.score >= 90) {
+    //         tag +='<tr class="pass">';
+    //     } else {
+    //         tag +='<tr class="fail">';
+    //     }
+        
+    //     for(let field in person) { //field 갯수 만큼
+    //         tag += '<td>'+person[field]+'</td>';
+    //     }
+    //     if(person.score >= 90) {
+    //         tag += '<td class="pass">Pass</td>'
+    //     } else {
+    //         tag += '<td class="fail">Fail</td>'
+    //     }
+    //     tag +='</tr>';
+            tag += creatTr(person);
+        }
+       
+    tag = tag + '</tbody></table>'
+    document.write(tag);
+}
+
+// createTable();
