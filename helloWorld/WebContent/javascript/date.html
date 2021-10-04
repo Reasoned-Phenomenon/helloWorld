@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript/date.html</title>
+    <style>
+
+       table {
+           text-align: center;
+           border-radius: 3px;
+           border: 1px black solid;
+           font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+           border-collapse: collapse;
+       }
+      
+       .month {
+           background-color: burlywood;
+       }
+       .week {
+        background-color: aquamarine;
+       }
+
+       #sun {
+           color: red;
+       }
+       #sat {
+           color: royalblue;
+       }
+
+    </style>
+</head>
+<body>
+    <script>
+        
+        // let today = new Date(2021,9,1); // 2021, 10 , 4
+        // today.setFullYear(2021);
+        // today.setDate(1); // 2021, 10, 1
+        // today.setFullYear(2021,9,1); // 2021, 10, 1
+        // today.setFullYear(2021,9,0); // 2021, 10, 1보다 하루 전날 -> 9월의 마지막날 -> 9월 30일
+
+        // document.write(today.getFullYear()+'년<br>');
+        // document.write((today.getMonth()+1)+'월<br>'); 
+        // document.write(today.getDate()+'일<br>'); 
+        // document.write(today.getDay()+'요일<br>'); //0~6 0:일요일
+        
+        // let lastDate = new Date(2021,10,0); //2021, 9, 31
+        // document.write('이번달의 마지막 날 : ' +  lastDate.getDate()+'<br>');
+
+        //이번달 달력
+        function showCal (year, month) {
+        let today = new Date(year,month-1,1);
+        let lastDate = new Date(year,month,0);
+        document.write('<table border="1"><thead><tr><th class="month" colspan = "7">'+year+'년 '+(today.getMonth()+1)+'월</th></tr>');
+        document.write('<tr class="week"><th id="sun">일</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th id="sat">토</th></thead>');
+        document.write('<tbody><tr>');
+        
+            for(let i =0; i < today.getDay() ; i++) {
+                document.write('<td> </td>');
+            }
+
+            for ( let j = 1; j <= lastDate.getDate() ; j ++) {
+                if((today.getDay()+j-1) % 7 == 0) {
+                    document.write('<td id="sun">'+j+'</td>');
+                } else if ( (today.getDay()+j-1) % 7 == 6) {
+                    document.write('<td id="sat">'+j+'</td>');
+                    document.write('</tr><tr>');
+                } else {
+                    document.write('<td>'+j+'</td>');
+                }
+            }
+
+            // for(let n =0; n < (today.getDay())+lastDate.getDate() ; n++) {
+            //     document.write('<td> </td>');
+            // }
+
+        document.write('</tr></tbody></table>');
+        }
+
+        showCal(2021,10);
+            
+    </script>
+
+    
+</body>
+</html>

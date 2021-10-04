@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript/array_iterable2.html</title>
+</head>
+<body>
+    <script>
+        const members = [
+        {
+            name:'최선영',
+            score: 80,
+        },{
+            name:'윤희성',
+            score: 85,
+        },{
+            name:'김지인',
+            score: 89,
+        },{
+            name:'홍길동',
+            score: 50,
+        }];
+
+        //mapping, filter, foreach
+        //mapping 60점 이상 pass,fail
+        // const pMembers = members.map(function(obj){
+        //     const nm = [];
+        //     if (obj.score >=60 ){
+        //         nm = [{
+        //         name: obj.name,
+        //         score: obj.score,
+        //         pass: 'pass'
+        //         }];
+        //     }
+        //      else {
+        //         nm = [{
+        //         name: obj.name,
+        //         score: obj.score,
+        //         pass: 'fail'
+        //         }];
+        //     };
+        //     return nm;
+        // });
+
+
+        const pMembers = members.map(function(obj){
+            if (obj.score >=60 ){
+                return {
+                name: obj.name,
+                score: obj.score,
+                pass: 'pass'
+                }
+            } else {
+                return {
+                name: obj.name,
+                score: obj.score,
+                pass: 'fail'
+                }
+            } 
+               
+        });
+        //pass <=filter
+        const paMembers = pMembers.filter(function(obj){
+            return obj.pass == 'pass';
+        });
+        //name,score,pass <= doc영역에 table // 이름,점수,합격여부
+        document.write('<table border=1><thead><tr><td>이름</td><td>점수</td><td>합격여부</td><tbody>')
+            paMembers.forEach(function(obj){
+                document.write('<tr><td>'+obj.name+'</td><td>'+obj.score+'</td><td>'+obj.pass+'</td></tr>')
+            })
+        document.write('</tbody></table>');
+    </script>
+</body>
+</html>

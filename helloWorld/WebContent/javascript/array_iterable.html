@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript/array_iterable.html</title>
+</head>
+<body>
+    <script>
+        const number = [30, 25, 4, 100, 10];
+        let sum = 0;
+        number.forEach(function(obj, idx, ary){
+            if ( idx % 2 == 0) // 홀수번째 위치 값을 저장.
+            sum = sum + obj;
+        });
+
+        console.log(`합계 : ${sum}`);
+
+        const names = ['한동일', '유상우', '정석진', '박준형'];
+
+        document.write('<ul>');
+        names.forEach(callBackFnc);
+        document.write('</ul>');
+            
+            
+        function callBackFnc(obj) {
+            document.write('<li>'+obj+'</li>');
+        }
+
+        const persons = names.map(function (obj, idx, ary) { // mapping
+            const score = Math.floor(Math.random() * 100); //소수점 아래 버림 -> 정수값으로 산출
+            const person = {
+                name: obj,
+                score: score
+            };
+            return person;
+        });  
+        console.log(persons);
+
+        const person50 = persons.filter(function(obj, idx, ary){ //filtering
+            return obj.score > 50;
+        });
+        console.log(person50);
+
+
+    </script>
+</body>
+</html>

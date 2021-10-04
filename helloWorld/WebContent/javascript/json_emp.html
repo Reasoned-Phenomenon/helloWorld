@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript/json_emp.html</title>
+
+    <style>
+        * {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    
+
+    <script>
+
+        function deleteEmp(e) {
+            let btn = e.target;
+            console.log(btn.ParentNode.remove());
+            
+        }
+
+        function mOver() {
+
+        }
+
+        let rawData =`[{"id":1,"first_name":"Thedrick","last_name":"Stutter","email":"tstutter0@github.io","gender":"Genderfluid","ip_address":"48.153.2.22"},
+{"id":2,"first_name":"Ottilie","last_name":"Betham","email":"obetham1@bizjournals.com","gender":"Bigender","ip_address":"50.88.206.70"},
+{"id":3,"first_name":"Katey","last_name":"Bockings","email":"kbockings2@dedecms.com","gender":"Agender","ip_address":"55.225.161.80"},
+{"id":4,"first_name":"Ernesto","last_name":"De Malchar","email":"edemalchar3@independent.co.uk","gender":"Bigender","ip_address":"101.207.92.202"},
+{"id":5,"first_name":"Charmane","last_name":"Tabourin","email":"ctabourin4@google.nl","gender":"Agender","ip_address":"211.94.105.114"},
+{"id":6,"first_name":"Tiebold","last_name":"Playle","email":"tplayle5@seattletimes.com","gender":"Female","ip_address":"232.1.176.234"},
+{"id":7,"first_name":"Conn","last_name":"Orans","email":"corans6@businessinsider.com","gender":"Non-binary","ip_address":"29.144.104.232"},
+{"id":8,"first_name":"Brocky","last_name":"Byng","email":"bbyng7@booking.com","gender":"Non-binary","ip_address":"33.244.39.55"},
+{"id":9,"first_name":"Claudie","last_name":"Himpson","email":"chimpson8@blinklist.com","gender":"Female","ip_address":"15.155.224.153"},
+{"id":10,"first_name":"Griswold","last_name":"Niccols","email":"gniccols9@hud.gov","gender":"Male","ip_address":"1.196.32.2"},
+{"id":11,"first_name":"Florence","last_name":"Ariss","email":"farissa@epa.gov","gender":"Female","ip_address":"139.113.154.229"},
+{"id":12,"first_name":"Palm","last_name":"Granville","email":"pgranvilleb@dell.com","gender":"Polygender","ip_address":"47.209.52.122"},
+{"id":13,"first_name":"Langsdon","last_name":"Poulsen","email":"lpoulsenc@jiathis.com","gender":"Non-binary","ip_address":"247.79.202.172"},
+{"id":14,"first_name":"Ramona","last_name":"Daldan","email":"rdaldand@tuttocitta.it","gender":"Bigender","ip_address":"239.105.174.156"},
+{"id":15,"first_name":"Jo-anne","last_name":"Willes","email":"jwillese@answers.com","gender":"Non-binary","ip_address":"221.72.106.131"}]`;
+    
+    //rawData-> object
+    let data = JSON.parse(rawData);
+
+        document.write('<table border="1"><thead><tr><th colspan="6">'+'emp'+'</th></tr>');
+
+            // for ( let field in data) {
+            //     document.write('<tr><th>'+data[field]+'</th></tr>')
+            // }
+
+            document.write('<tr><th>'+"id"+'</th><th>'+"firstName"+'</th><th>'+"lastName"+'</th><th>'+"email"+'</th><th>'+"gender"+'</th><th>'+"삭제처리"+'</th></tr>');
+            
+            for(let i = 0; i < data.length ; i++) {
+                document.write('<tr><td>'+data[i].id+'</td><td>'+data[i].first_name+'</td><td>'+data[i].last_name+'</td><td>'+data[i].email
+                    +'</td><td>'+data[i].gender+'</td>'
+                    +'<td><button onclick="deleteEmp(event)">삭제</button></td></tr>');
+            }
+
+
+
+
+        document.write('</thead>')
+
+
+
+
+        document.write('</table>')
+
+
+
+
+    
+    
+    
+    </script>
+</body>
+</html>

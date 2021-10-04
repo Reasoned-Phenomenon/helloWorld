@@ -16,6 +16,15 @@
 
     </ul>
     <script>
+
+        const fruits =['apple', 'banana', 'cherry'];
+        const newFruits = fruits.slice(0,2);
+
+        console.log(newFruits);
+
+
+
+
         const inputAry = [];
         /*
         inputAry[2] = null; //a,b,null,d,e,f 
@@ -55,14 +64,28 @@
         }
 
         function removeAry() {
-            let input = document.getElementById('inputValue');
-            let iValue = input.value;
+            //element의 값을 갖고 오도록.
+            
+            // let iValue = document.getElementById('inputValue').value;
+            // 위와 아래 두줄은 같음
+            // let input = document.getElementById('inputValue');
+            // let iValue = input.value;
+            // let iv = document.getElementsByTagName('input')[0].value; //여러개 선택 -> 컬렉션
+            let iValue = document.querySelector('input[type="text"]').value;
+            
             if (!iValue) {
                 alert('값을 입력하세요.');
                 return;
             }
-            console.log(inputAry.indexOf(iValue))
-            inputAry.splice(inputAry.indexOf(iValue),1);
+            for(let i=0; i<inputAry.length; i++) {
+                if(inputAry[i]==iValue){
+                    inputAry.splice(i,1); //삭제
+                    break;
+                }
+            }
+
+            // console.log(inputAry.indexOf(iValue))
+            // inputAry.splice(inputAry.indexOf(iValue),1);
             // inputAry.shift();
             showList();
         }

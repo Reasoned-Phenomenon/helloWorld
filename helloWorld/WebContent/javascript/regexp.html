@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript/regexp.html</title>
+</head>
+<body>
+    <h2>JavaScript Regular Expressions</h2>
+    <p>Search for an "e" in the next paragraph:</p>
+    <p id="p01">The best things in life are free!</p>
+    <p id="p02">www.daum.net</p>
+    <p id="demo"></p>
+    <p id="demo2"></p>
+
+    <script>
+        let text = document.getElementById("p01").innerHTML;
+        const pattern = /e/; // new RegExp();
+        document.getElementById("demo").innerHTML = pattern.test(text);
+        //
+        let text2 = document.getElementById("p02").innerHTML;
+        const pattern2 = /[Da]/; 
+        document.getElementById("demo2").innerHTML = pattern2.test(text2);
+    </script>
+
+</body>
+</html>
