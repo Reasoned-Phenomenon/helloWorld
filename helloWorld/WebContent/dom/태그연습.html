@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>태그연습.html</title>
+</head>
+
+
+
+<body>
+    <h3>---바디---</h3>
+        <form action="post.jsp" name="frm">
+            <label for="emp">아이디</label>
+            <input type="text" name="" id="emp">
+            <label for="name">이름</label>
+            <input type="text" id="name">
+            <input type="submit" value="전송">
+        </form>
+        <br>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>아이디</th>
+                    <th>이름</th>
+                    <th>성별</th>
+                    <th>연락처</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>hongee</td>
+                    <td>홍길동</td>
+                    <td>남자</td>
+                    <td>010-1234-5678</td>
+                </tr>
+                <tr>
+                    <td>minsunie</td>
+                    <td>김민순</td>
+                    <td>여자</td>
+                    <td>010-3333-5543</td>
+                </tr>
+            </tbody>
+        </table>
+    <h3>---바디---</h3>
+
+        <script>
+            document.write('---script---');
+            let mBody = document.getElementsByTagName('body');
+            let mForm = document.createElement('form');
+            let mLabel1 = document.createElement('label');
+            let mLabel2 = document.createElement('label');
+            let mInput1 = document.createElement('input');
+            let mInput2 = document.createElement('input');
+            let mInput3 = document.createElement('input');
+
+            mForm.setAttribute('action','post.jsp');
+            mForm.setAttribute('name','frm');
+
+            mLabel1.innerHTML = '아이디';
+            mLabel1.setAttribute('for','emp');
+            
+            mInput1.setAttribute('type','text');
+            mInput1.setAttribute('id','emp');
+
+            mLabel2.innerHTML = '이름';
+            mLabel2.setAttribute('for','name');
+            
+            mInput2.setAttribute('id','name');
+            mInput2.setAttribute('text','name');
+
+            mInput3.setAttribute('value','전송');
+            mInput3.setAttribute('type','submit');
+
+            console.log(mLabel1);
+            console.log(mInput1);
+            console.log(mLabel2);
+            console.log(mInput2);
+            console.log(mInput3);
+            
+            mForm.appendChild(mLabel1);
+            mForm.appendChild(mInput1);
+            mForm.appendChild(mLabel2);
+            mForm.appendChild(mInput2);
+            mForm.appendChild(mInput3);
+            
+            console.log(mForm);
+            mBody[0].appendChild(mForm);
+            document.write('---script---');
+
+            let table = document.createElement('table');
+            table.setAttribute('border','1');
+
+            let thead = document.createElement('thead');
+
+            let tr = document.createElement('tr');
+            let th = document.createElement('th');
+            th.innerHTML = '아이디';
+            tr.appendChild(th);
+            th = document.createElement('th');
+            th.innerHTML = '이름';
+            tr.appendChild(th);
+            th = document.createElement('th');
+            th.innerHTML = '성별';
+            tr.appendChild(th);
+            th = document.createElement('th');
+            th.innerHTML = '연락처';
+            tr.appendChild(th);
+            thead.appendChild(tr);
+            table.appendChild(thead);
+
+            let tbody = document.createElement('tbody');
+            tr = document.createElement('tr');
+            let td = document.createElement('td');
+            td.innerHTML ='hongee';
+            tr.appendChild(td);
+            td = document.createElement('td');
+            td.innerHTML ='홍길동';
+            tr.appendChild(td);
+            td = document.createElement('td');
+            td.innerHTML ='남자';
+            tr.appendChild(td);
+            td = document.createElement('td');
+            td.innerHTML ='010-1234-5678';
+            tr.appendChild(td);
+            tbody.appendChild(tr);
+           
+            tr = document.createElement('tr');
+            td = document.createElement('td');
+            td.innerHTML ='minsunie';
+            tr.appendChild(td);
+            td = document.createElement('td');
+            td.innerHTML ='김민순';
+            tr.appendChild(td);
+            td = document.createElement('td');
+            td.innerHTML ='여자';
+            tr.appendChild(td);
+            td = document.createElement('td');
+            td.innerHTML ='010-3333-5543';
+            tr.appendChild(td);
+            tbody.appendChild(tr);
+
+            table.appendChild(tbody);
+            mBody[0].appendChild(table);
+            document.write('---script---');
+        </script>
+
+</body>
+</html>

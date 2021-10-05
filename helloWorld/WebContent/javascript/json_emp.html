@@ -17,10 +17,21 @@
     
 
     <script>
-
+        //global scope : global var.
+        //function scope : local var.
+        //ES6(2015) block scope : let, const
+        
         function deleteEmp(e) {
             let btn = e.target;
-            console.log(btn.ParentNode.remove());
+            console.log(btn.parentNode.parentNode.remove());
+
+            //시도
+            // let t = document.getElementById("parent")
+            // btn.ParentNode.ParentNode.removeChild(t);
+
+            //구글링
+            // let parent = child.ParentNode;
+            // parent.ParentNode.removeChild(parent);
             
         }
 
@@ -61,22 +72,19 @@
                     +'<td><button onclick="deleteEmp(event)">삭제</button></td></tr>');
             }
 
+        document.write('</thead></table>')
 
+    //내 화면에선 구현 안되는 것. 교수님꺼 따라 타이핑
+    // let ids = document.querySelectorAll(' .row > div.firstName');
+    // console.log(ids);
+    // let firstNames = document.getElementsByClassName('firstName');
+    // console.log(firstNames);
+    // console.log(firstNames[1].innerHTML);
 
+    //object-> json
+    // let json = JSON.stringify(data);
+    // console.log(json);
 
-        document.write('</thead>')
-
-
-
-
-        document.write('</table>')
-
-
-
-
-    
-    
-    
     </script>
 </body>
 </html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript/this.html</title>
+</head>
+<body>
+
+    <button id="btn">click</button>
+
+    <script>
+        const person = {
+            firstName: '길동',
+            lastName: '홍',
+            age: 20,
+            fullName: function () {
+                return this.firstName  + ' - ' + this.lastName; //object : this ( object )
+            }
+        }
+
+        console.log(person.fullName());
+
+        console.log(this); //window
+        
+        function myFnc () {
+            console.log(this); //window
+        }
+
+        myFnc();
+
+        let btn = document.getElementById('btn');
+        btn.onclick = function () {
+            console.log(this);
+        }
+        // console.log(btn);
+    </script>
+</body>
+</html>

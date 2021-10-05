@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dom/emp_list.html</title>
+    <style>
+
+        div#show {
+            display: inline-block;
+            width: 60%;
+        }
+        div#set {
+            float: right;
+        }
+        table {
+            border: black 1px solid;
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+
+        div#show {
+            width: 60%;
+            float: left;
+        }
+
+        div#aside {
+            width: 28%;
+            float: left;
+            border: 2px dotted firebrick;
+            padding: 5px;
+        }
+
+        #aside label {
+            display: inline-block;
+            width: 100px;
+        }
+
+        
+    </style>
+</head>
+
+<body>
+
+    <div id="show">
+
+    </div>
+
+    <div id="get">
+
+    </div>
+
+    <div id="aside">
+        <div class="id"><label for="empId">ID</label><input type="text" id="empId"></div>
+        <div class="fname"><label for="empId">FName</label><input type="text" id="firstName"></div>
+        <div class="lname"><label for="empId">LName</label><input type="text" id="lastName"></div>
+        <div class="email"><label for="empId">Email</label><input type="text" id="email"></div>
+        <div class="gender"><label for="empId">Gender</label><input type="text" id="gender"></div>
+        <div class="address"><label for="empId">IP</label><input type="text" id="address"></div>
+        <div class="btn"> <button id="btn">변경</button><button id="btnD">삭제</button></div>
+    </div>
+
+    <script>
+
+        document.getElementById('btn').onclick = function () {
+            let empId = document.getElementById('empId').value;
+            let fname = document.getElementById('firstName').value;
+            let lname = document.getElementById('lastName').value;
+            let email = document.getElementById('email').value;
+            let gender = document.getElementById('gender').value;
+            let address = document.getElementById('address').value;
+            console.log(empId);
+
+            let findTr = document.getElementById(empId);
+            console.log(findTr);
+
+            findTr.childNodes[1].firstChild.nodeValue = fname;
+            findTr.childNodes[2].firstChild.nodeValue = lname;
+            findTr.childNodes[3].firstChild.nodeValue = email;
+            findTr.childNodes[4].firstChild.nodeValue = gender;
+            findTr.childNodes[5].firstChild.nodeValue = address;
+        }
+
+        document.getElementById('btnD').onclick = function () {
+            let empId = document.getElementById('empId').value;
+            let findTr = document.getElementById(empId);
+            findTr.remove();
+        }
+
+        let rawData =`[{"id":1,"first_name":"Thedrick","last_name":"Stutter","email":"tstutter0@github.io","gender":"Genderfluid","ip_address":"48.153.2.22"},
+        {"id":2,"first_name":"Ottilie","last_name":"Betham","email":"obetham1@bizjournals.com","gender":"Bigender","ip_address":"50.88.206.70"},
+        {"id":3,"first_name":"Katey","last_name":"Bockings","email":"kbockings2@dedecms.com","gender":"Agender","ip_address":"55.225.161.80"},
+        {"id":4,"first_name":"Ernesto","last_name":"De Malchar","email":"edemalchar3@independent.co.uk","gender":"Bigender","ip_address":"101.207.92.202"},
+        {"id":5,"first_name":"Charmane","last_name":"Tabourin","email":"ctabourin4@google.nl","gender":"Agender","ip_address":"211.94.105.114"},
+        {"id":15,"first_name":"Jo-anne","last_name":"Willes","email":"jwillese@answers.com","gender":"Non-binary","ip_address":"221.72.106.131"}]`;
+
+        let data = JSON.parse(rawData);
+        let ds = document.getElementById('show');
+        let table = document.createElement('table');
+        table.setAttribute('border',1);
+        let tbody = document.createElement('tbody');
+        
+        tr = document.createElement('tr');
+        tbody.appendChild(tr);
+        for (let field in data[0]) {
+            td = document.createElement('th');
+            text = document.createTextNode(field.replace('_', ' ').toUpperCase());
+            td.appendChild(text);
+            tr.appendChild(td);
+        }
+        td = document.createElement('th');
+        text2 = document.createTextNode('삭제');
+        td.appendChild(text2);
+        tr.appendChild(td);
+        
+        for ( let field in data) {
+            let tr = document.createElement('tr');
+            // tr.setAttribute('id', row.id); //나와 다름
+            tr.onmouseover = function () {
+                // console.log(this.childNodes[0].firstChild);
+                let empId = this.childNodes[0].firstChild.nodeValue;
+                let empFname = this.childNodes[1].firstChild.nodeValue;
+                let empLname = this.childNodes[2].firstChild.nodeValue;
+                let empEmail = this.childNodes[3].firstChild.nodeValue;
+                let empGender = this.childNodes[4].firstChild.nodeValue;
+                let empIpaddres = this.childNodes[5].firstChild.nodeValue;
+                
+                document.getElementById('empId').value = empId;
+                document.getElementById('firstName').value = empFname;
+                document.getElementById('lastName').value = empLname;
+                document.getElementById('email').value = empEmail;
+                document.getElementById('gender').value = empGender;
+                document.getElementById('address').value = empIpaddres;
+            }
+            
+            let td = document.createElement('td');
+            let id = document.createTextNode(data[field].id);
+            tr.setAttribute('id', data[field].id);
+            
+            td.appendChild(id);
+            tr.appendChild(td);
+
+            td = document.createElement('td');
+            let fName = document.createTextNode(data[field].first_name);
+            td.appendChild(fName);
+            tr.appendChild(td);
+
+            td = document.createElement('td');
+            let lName = document.createTextNode(data[field].last_name);
+            td.appendChild(lName);
+            tr.appendChild(td);
+
+            td = document.createElement('td');
+            let email = document.createTextNode(data[field].email);
+            td.appendChild(email);
+            tr.appendChild(td);
+
+            td = document.createElement('td');
+            let gen = document.createTextNode(data[field].gender);
+            td.appendChild(gen);
+            tr.appendChild(td);
+
+            td = document.createElement('td');
+            let ipA = document.createTextNode(data[field].ip_address);
+            td.appendChild(ipA);
+            tr.appendChild(td);
+
+            td = document.createElement('td');
+            let bnt = document.createElement('button');
+            bnt.onclick = function () {
+                this.parentNode.parentNode.remove();
+            }
+            text = document.createTextNode('삭제');
+            bnt.appendChild(text);
+            td.appendChild(bnt);
+            tr.appendChild(td);
+
+            tbody.appendChild(tr);
+        }
+        
+        table.appendChild(tbody);
+        ds.appendChild(table);
+
+
+        //내가 만든 것 - 교수님은 body에 넣으셨음
+        // let dGet = document.getElementById('get');
+
+        // let divId = document.createElement('div');
+        // divId.innerHTML = 'ID : ';
+        // let ipId = document.createElement('input');
+        // divId.appendChild(ipId);
+        // dGet.appendChild(divId);
+
+        // let divIFN = document.createElement('div');
+        // divIFN.innerHTML = 'FIRST NAME : ';
+        // let ipIFN = document.createElement('input');
+        // divIFN.appendChild(ipIFN);
+        // dGet.appendChild(divIFN);
+
+        // let divILN = document.createElement('div');
+        // divILN.innerHTML = 'LAST NAME : ';
+        // let ipILN = document.createElement('input');
+        // divILN.appendChild(ipILN);
+        // dGet.appendChild(divILN);
+
+        // let divIE = document.createElement('div');
+        // divIE.innerHTML = 'Email : ';
+        // let ipIE = document.createElement('input');
+        // divIE.appendChild(ipIE);
+        // dGet.appendChild(divIE);
+
+        // let divIG = document.createElement('div');
+        // divIG.innerHTML = 'GENDER : ';
+        // let ipIG = document.createElement('input');
+        // divIG.appendChild(ipIG);
+        // dGet.appendChild(divIG);
+        
+        // let divIPA = document.createElement('div');
+        // divIPA.innerHTML = 'IP ADDRESS : ';
+        // let ipIPA = document.createElement('input');
+        // divIPA.appendChild(ipIPA);
+        // dGet.appendChild(divIPA);
+
+    </script>
+</body>
+</html>
