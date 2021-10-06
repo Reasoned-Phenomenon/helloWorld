@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dom/ajax_xml.html</title>
+</head>
+<body>
+    <h1>Ajax XML 파일실습.</h1>
+    <div id="show"></div>
+
+    <script>
+        let xhtp = new XMLHttpRequest();
+        xhtp.onreadystatechange = function () { //onreadystatechange 말고 onload 도 사용 가능.
+            if ( this.status == 200 && this.readyState == 4 ) {
+                let doc = this.responseXML;
+                let data = doc.getElementsByTagName('record');
+                console.log(data[0].childNodes[1].firstChild.nodeValue);
+                createPage(data); // <record></record>
+            }
+        }
+        xhtp.open('get','dataset.xml');
+        xhtp.send();
+
+        function createPage (data) {
+            let titles = ['아이디','이름','성씨','이메일','성별','아이피']
+            //id fn ln em gen ip
+            let table,tr,td,txt;
+            table = document.createElement('table');
+            table.setAttribute('border','1');
+            //타이틀(헤더)
+            tr = document.createElement('tr');
+            for ( let title of titles) {
+                td = document.createElement('th');
+                txt = document.createTextNode(title);
+                td.appendChild(txt);
+                tr.appendChild(td);
+            }
+            table.appendChild(tr);
+
+            //데이터 부분.
+            for (let i = 0 ; i < data.length ; i ++) {
+                tr = document.createElement('tr');
+                for (let j=0 ; j<6 ; j++) {
+                    td = document.createElement('td');
+                    let id = data[i].childNodes[j].firstChild.nodeValue;
+                    txt = document.createTextNode(id);
+                    td.appendChild(txt);
+                    tr.appendChild(td);
+                }
+                table.appendChild(tr);
+            // let fn = data[i].childNodes[1].firstChild.nodeValue;
+            // let ln =  data[i].childNodes[2].firstChild.nodeValue;
+            // let em = data[i].childNodes[3].firstChild.nodeValue;
+            // let gen = data[i].childNodes[4].firstChild.nodeValue;
+            // let ip = data[i].childNodes[5].firstChild.nodeValue;
+            // 
+            // table.appendChild(tr);
+            // console.log(id+', '+fn+', '+ln+', '+em+', '+gen+', '+ip);
+            }
+            document.getElementById('show').appendChild(table);
+        }
+    </script>
+</body>
+</html>

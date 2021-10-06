@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dom/ajax.html</title>
+</head>
+<body>
+    <h2>ajax 처리.</h2>
+    <div id = "show">
+
+    </div>
+    <script>
+
+        //서버에서 get.json
+        let xhtp = new XMLHttpRequest(); //new String() 이렇게 안하고- > "" 이렇게 했었음. 그러나 XMLHttpRequest는 따로 방식이 없음.
+        xhtp.onreadystatechange = function () {
+            console.log(xhtp.readyState + ', ' + xhtp.status);
+            if(xhtp.readyState == 4 && xhtp.status == 200) {
+                // console.log( xhtp.responseText );
+                let data = JSON.parse(xhtp.responseText);
+                // console.log(data);
+                createPage(data);
+            } else {
+                console.error('에러 발생.')
+            }
+        }
+        xhtp.open('get', 'get.json');
+        xhtp.send();
+
+        function createPage(ary) {
+            // console.log(ary[0]); //{id:?, first_name:?, last_name:?....} 
+            let table, tr, td, txt;
+            table = document.createElement('table');
+            table.setAttribute('border','1');
+            //타이틀 생성
+            tr = document.createElement('tr');
+            table.appendChild(tr); // <tabel><tr></tr></table>
+            for ( let field in ary[0]) {
+                td = document.createElement('th');
+                txt = document.createTextNode(field.toUpperCase().replace('_',' '));
+                td.appendChild(txt); // <th>id</th> <th>first_name</th> ...
+                tr.appendChild(td);
+            }
+            //데이터 생성.
+            // for ( let i=0 ; i < ary.length ; i++) {
+            for ( let obj of ary) {
+                tr = document.createElement('tr');
+                table.appendChild(tr); 
+                for ( let field in ary[0]) {
+                td = document.createElement('td');
+                // txt = document.createTextNode(ary[i][field]);
+                txt = document.createTextNode(obj[field]);
+                td.appendChild(txt); 
+                tr.appendChild(td);
+                }
+            }
+            document.getElementById('show').appendChild(table);
+
+        }
+
+
+    </script>
+</body>
+</html>
