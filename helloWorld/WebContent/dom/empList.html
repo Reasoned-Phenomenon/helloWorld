@@ -39,6 +39,12 @@
 			let email = document.getElementById('email').value;
 			let hireDate = document.getElementById('hireDate').value;
 			let job = document.getElementById('job').value;
+			
+			if (empId == "" || lname == "" || email == "" || hireDate == "" || job == "") {
+				window.alert("필수입력항목 확인!");
+				return;
+			}
+			
 			let param = 'id=' + empId + '&name=' + lname + '&email=' + email + '&hireDate=' + hireDate +'&job=' + job;
 			
 			console.log(empId);
@@ -56,7 +62,12 @@
 				}
 				
 				 td = document.createElement('td');
-			     td.innerHTML = '<button>삭제</button>';
+				 let btnTag = document.createElement('button')
+			     btnTag.innerHTML = '삭제';
+				 btnTag.onclick = function () {
+               		this.parentNode.parentNode.remove();
+            		}       
+				 td.appendChild(btnTag);	
 			     tr.appendChild(td);
 			     
 				document.querySelector('#show>table').appendChild(tr);
@@ -66,6 +77,22 @@
 			xhtp.open('post','../AddEmpServlet');
 			xhtp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			xhtp.send(param);
+
+		}
+
+
+		function deleteEmp () {
+			// id값 가져와서 해당 tr 삭제
+			// 1) 해당 tr 삭제 + 2)DB의 데이터 삭제
+
+			// 1)
+			//버튼의 .parent는 td ,  .parent.parent -> tr
+			//parentNode.parentNode
+
+			//2
+			//DB의 데이터 삭제
+			// EmpDAO의 deleteEmp 메서드 사용.
+
 
 		}
 	</script>

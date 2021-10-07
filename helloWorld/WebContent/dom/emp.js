@@ -61,13 +61,18 @@ function showEmpList(data) {
         txt = document.createTextNode(data[i].job);
         td.appendChild(txt);
         tr.appendChild(td);
-        
+
         td = document.createElement('td');
-        td.innerHTML = '<button>삭제</button>';
+        let btnTag = document.createElement('button')
+        btnTag.innerHTML = '삭제';
+        btnTag.onclick = function () {
+              this.parentNode.parentNode.remove();
+              
+           }       
+        td.appendChild(btnTag);	
         tr.appendChild(td);
-
+        
         table.appendChild(tr);
-
     }
     document.getElementById('show').appendChild(table);
 }

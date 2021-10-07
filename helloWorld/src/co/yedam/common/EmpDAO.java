@@ -22,7 +22,7 @@ public class EmpDAO extends DAO{
 				emp.setEmployeeId(rs.getInt("employee_id"));
 				emp.setLastName(rs.getString("last_name"));
 				emp.setEmail(rs.getString("email"));
-				emp.setHireDate(rs.getString("hire_date"));
+				emp.setHireDate(rs.getString("hire_date").substring(0,10));
 				emp.setJobId(rs.getString("job_id"));
 				
 				list.add(emp);
@@ -37,7 +37,23 @@ public class EmpDAO extends DAO{
 		return list;
 	}
 	
-	public void deleteEmp(int empId) {
+//	public void deleteEmp(int empId) {
+//		connect(); //conn = dbconnection.Connection
+//		String sql = "delete from empl_demo where employee_id = " + empId;
+//		
+//		try {
+//			stmt = conn.createStatement(); //Employee emp = new Employee();
+//			int r = stmt.executeUpdate(sql);
+//			System.out.println(r+"건 삭제됨.");
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		} finally {
+//			disconnect();
+//		}
+//		
+//	}
+	
+	public int deleteEmp(int empId) {
 		connect(); //conn = dbconnection.Connection
 		String sql = "delete from empl_demo where employee_id = " + empId;
 		
@@ -45,11 +61,14 @@ public class EmpDAO extends DAO{
 			stmt = conn.createStatement(); //Employee emp = new Employee();
 			int r = stmt.executeUpdate(sql);
 			System.out.println(r+"건 삭제됨.");
+			return empId;
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			disconnect();
 		}
+		return -1;
 		
 	}
 	
