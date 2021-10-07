@@ -53,7 +53,7 @@ public class EmpDAO extends DAO{
 //		
 //	}
 	
-	public int deleteEmp(int empId) {
+	public int deleteEmp(String empId) {
 		connect(); //conn = dbconnection.Connection
 		String sql = "delete from empl_demo where employee_id = " + empId;
 		
@@ -61,7 +61,7 @@ public class EmpDAO extends DAO{
 			stmt = conn.createStatement(); //Employee emp = new Employee();
 			int r = stmt.executeUpdate(sql);
 			System.out.println(r+"건 삭제됨.");
-			return empId;
+			return Integer.parseInt(empId);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -21,6 +21,7 @@
 		<div class="field">입사일자: <input type="date" id = "hireDate"></div>
 		<div class="field">직무: <input type="text" id = "job" value="IT_PROG"></div>
 		<button id="addBtn">등록</button>
+		<button id="updateBtn">변경</button>
 	</div>
 
 	
@@ -61,14 +62,29 @@
 				tr.appendChild(td);
 				}
 				
-				 td = document.createElement('td');
-				 let btnTag = document.createElement('button')
-			     btnTag.innerHTML = '삭제';
-				 btnTag.onclick = function () {
-               		this.parentNode.parentNode.remove();
-            		}       
-				 td.appendChild(btnTag);	
-			     tr.appendChild(td);
+				td = document.createElement('td');
+				let btnTag = document.createElement('button')
+				btnTag.innerHTML = '삭제';
+				btnTag.onclick = function () {
+				let id = this.parentNode.parentNode.firstChild.innerHTML;
+				let tr = this.parentNode.parentNode;
+				//삭제 서블릿. call
+				let xhtp = new XMLHttpRequest();
+				xhtp.onload = function () {
+                console.log(xhtp.responseText);
+                let result = JSON.parse(xhtp.responseText); // json -> obj
+                if (result.retCode == 'success' ) {
+                    tr.remove();
+                } else {
+                    window.alert('처리중 에러발생');
+                }
+            }
+            xhtp.open('get','../delEmpServlet?delId='+id); //삭제 서블릿 넣어주기
+            xhtp.send();
+            
+           }       
+        td.appendChild(btnTag);	
+        tr.appendChild(td);
 			     
 				document.querySelector('#show>table').appendChild(tr);
 				
