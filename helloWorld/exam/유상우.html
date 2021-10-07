@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>유상우.html</title>
+    <style>
+
+        * {
+            box-sizing: border-box;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        header {
+            border: 1px black solid;
+            margin: 5px;
+            padding: 20px;
+            background-color: palevioletred;
+            margin-bottom: 10px;
+            height: 130px;
+        }
+            header>div {
+                padding-top: 5px;
+                margin-left: 10px;
+            }
+
+            header>div>h1 {
+                margin-top: 3px;
+               margin-bottom: 3px; 
+            }
+            .aset {
+                margin-left: 30px;
+            }
+
+            a {
+                padding: 10px;
+                margin-left: 20px;
+                color: olive;
+                text-decoration: none;
+                margin-bottom: 3px;
+            }
+        
+        section {
+            float: left;
+            border: 1px black solid;
+            width: 71%;
+            margin-left: 5px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+            .art {
+                margin-left: 20px;
+            }
+
+            table {
+                border: 1px;
+                text-align: center;
+                margin-left: 50px;
+                margin-bottom: 20px;
+                width: 85%;
+                border-collapse: collapse;
+            }
+
+            thead>tr:first-child {
+                background-color: blue;
+                color: white;
+            }
+
+            tr:nth-child(2n) {
+                background-color: skyblue;
+            }
+
+            tr:nth-child(2n+1) {
+                background-color: oldlace;
+            }
+
+            .text {
+                background-color: yellow;
+                margin-left: 50px;
+                display: inline-block;
+                width: 85%;
+            }
+
+        aside {
+            float: left;
+            border: 1px black solid;
+            width: 25%;
+            margin: 10px;
+            padding: 10px;
+            background-color: grey;
+            position: relative;
+            left: 2%;
+        }
+
+            .sb {
+                padding-top: 10px;
+            }
+
+        footer {
+            float: none;
+            border: 1px black solid;
+            clear :both;
+            padding: 10px;
+            margin: 5px;
+            margin-top: 10px;
+        }
+
+            footer>h1 {
+                padding-top: 20px;
+                padding-left: 10px;
+                margin: 5px;
+            }
+
+            footer>h4 {
+                padding-top: 20px;
+                padding-left: 10px;
+                margin: 5px;
+                padding-bottom: 20px;
+            }
+
+    </style>
+</head>
+<body>
+    <!-- 3층 -->
+    <header class="header">
+        <div><h1>ONLINE SSAFY</h1></div>
+        <div class="aset">
+            <a href="">메뉴1</a> <a href="">메뉴2</a> <a href="">메뉴3</a> <a href="">메뉴4</a>
+        </div>
+    </header>
+
+    <!-- 2층 -->
+    <section class="section">
+        <div class="art"><h3>기사 1</h3>
+            <div class="text">
+                <span>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia non, vitae eveniet unde, 
+                    ut doloremque aut suscipit ullam autem inventore quos esse odio reiciendis harum asperiores velit accusamus facere molestiae. 
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. <br><br>
+                    Voluptatibus minima deserunt ea consequatur, eligendi asperiores laboriosam nam quaerat dolores, autem ipsa blanditiis reiciendis 
+                    magnam, qui facilis quia? Voluptatem, distinctio facilis? Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem laborum quae, omnis illo explicabo officia ut aspernatur sapiente ea corporis at, impedit possimus dolor voluptate reiciendis nihil. Delectus, reprehenderit rerum.
+                </span>
+            </div>
+        </div>
+        <div class="art"><h3>기사 2</h3>
+            <div>
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>번호</th>
+                            <th>제목</th>
+                            <th>작성자</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</td>
+                            <td>강감찬</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Excepturi necessitatibus consequuntur, temporibus dicta,</td>
+                            <td>장영실</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>nisi aut labore ratione qui quis doloribus</td>
+                            <td>안중근</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td> voluptatem voluptates unde exercitationem</td>
+                            <td>김두한</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>dolor? Architecto laudantium voluptatem</td>
+                            <td>계백</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>quo quaerat.</td>
+                            <td>최무선</td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <aside class="aside">
+       <div class="sb"><h2>SIDEBAR</h2></div>
+       <div><h5>모든 국민은 근로의 의무를 진다. 국가는 근로의 의무의 내용과 조건을 민주주의 원칙에 따라 법률로 정한다.</h5></div>
+    </aside>
+
+    <!-- 1층 -->
+    <footer class="footer">
+       <h1>Footer<h1>
+        <h4>
+        이 헌법시행 당시의 법령과 조약은 이 헌법에 위대되지 아니하는 한 그 효력을 지속한다.
+        </h4>
+       </div>
+    </footer>
+</body>
+</html>

@@ -40,77 +40,83 @@
 			let email = document.getElementById('email').value;
 			let hireDate = document.getElementById('hireDate').value;
 			let job = document.getElementById('job').value;
-			
-			if (empId == "" || lname == "" || email == "" || hireDate == "" || job == "") {
-				window.alert("필수입력항목 확인!");
-				return;
-			}
-			
-			let param = 'id=' + empId + '&name=' + lname + '&email=' + email + '&hireDate=' + hireDate +'&job=' + job;
-			
-			console.log(empId);
 
-			let xhtp = new XMLHttpRequest();
-			xhtp.onload = function () {
-				let data = JSON.parse(xhtp.responseText);
-				// {id:?, name:?, email:?, ..} -> object 타입
-				let tr = document.createElement('tr');
-				
-				for ( let field in data) {
-				let td = document.createElement('td');	
-				td.appendChild(document.createTextNode(data[field]));
-				tr.appendChild(td);
+			//등록 아이디가 존재하는지 여부 체크
+			//아이디값을 가지고 서버에 존재여부 체크.
+			//ajax > 서블릿 > EmpDAO : 한건 조회해서 메소드.
+			//존재하면 true, 존재하지 않으면 false
+			
+			let xhttp = new XMLHttpRequest();
+			xhttp.onload = function () {
+				let exists = JSON.parse(xhttp.responseText); //샐행결과값이 responseText에 담김. {retCode:'OK'}나 {retCode:'NG'}
+				// exist or nonexist
+				//교수님
+				if (exists.retCode == 'NG') {
+					window.alert('이미 존재하는 아이디입니다.');
+					return;
 				}
 				
-				td = document.createElement('td');
-				let btnTag = document.createElement('button')
-				btnTag.innerHTML = '삭제';
-				btnTag.onclick = function () {
-				let id = this.parentNode.parentNode.firstChild.innerHTML;
-				let tr = this.parentNode.parentNode;
-				//삭제 서블릿. call
+				if (empId == "" || lname == "" || email == "" || hireDate == "" || job == "") {
+					window.alert("필수입력항목 확인!");
+					return;
+				}
+				
+				let param = 'id=' + empId + '&name=' + lname + '&email=' + email + '&hireDate=' + hireDate +'&job=' + job;
+				
+				console.log(empId);
+	
 				let xhtp = new XMLHttpRequest();
 				xhtp.onload = function () {
-                console.log(xhtp.responseText);
-                let result = JSON.parse(xhtp.responseText); // json -> obj
-                if (result.retCode == 'success' ) {
-                    tr.remove();
-                } else {
-                    window.alert('처리중 에러발생');
-                }
-            }
-            xhtp.open('get','../delEmpServlet?delId='+id); //삭제 서블릿 넣어주기
-            xhtp.send();
-            
-           }       
-        td.appendChild(btnTag);	
-        tr.appendChild(td);
-			     
-				document.querySelector('#show>table').appendChild(tr);
+					let data = JSON.parse(xhtp.responseText);
+					// {id:?, name:?, email:?, ..} -> object 타입
+					let tr = document.createElement('tr');
+					
+					for ( let field in data) {
+					let td = document.createElement('td');	
+					td.appendChild(document.createTextNode(data[field]));
+					tr.appendChild(td);
+					}
+					
+					td = document.createElement('td');
+					let btnTag = document.createElement('button')
+					btnTag.innerHTML = '삭제';
+					btnTag.onclick = function () {
+					let id = this.parentNode.parentNode.firstChild.innerHTML;
+					let tr = this.parentNode.parentNode;
+					//삭제 서블릿. call
+					let xhtp = new XMLHttpRequest();
+					xhtp.onload = function () {
+					console.log(xhtp.responseText);
+					let result = JSON.parse(xhtp.responseText); // json -> obj
+					if (result.retCode == 'success' ) {
+						tr.remove();
+					} else {
+						window.alert('처리중 에러발생');
+					}
+				}
+				xhtp.open('get','../delEmpServlet?delId='+id); //삭제 서블릿 넣어주기
+				xhtp.send();
 				
+			   }       
+				td.appendChild(btnTag);	
+				tr.appendChild(td);
+					 
+					document.querySelector('#show>table').appendChild(tr);
+					
+				}
+	
+				xhtp.open('post','../AddEmpServlet');
+				xhtp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+				xhtp.send(param);
+
 			}
 
-			xhtp.open('post','../AddEmpServlet');
-			xhtp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			xhtp.send(param);
+			xhttp.open('get', '../checkEmpServlet?checkId='+empId);
+			xhttp.send();
 
 		}
 
 
-		function deleteEmp () {
-			// id값 가져와서 해당 tr 삭제
-			// 1) 해당 tr 삭제 + 2)DB의 데이터 삭제
-
-			// 1)
-			//버튼의 .parent는 td ,  .parent.parent -> tr
-			//parentNode.parentNode
-
-			//2
-			//DB의 데이터 삭제
-			// EmpDAO의 deleteEmp 메서드 사용.
-
-
-		}
 	</script>
 </body>
 </html>

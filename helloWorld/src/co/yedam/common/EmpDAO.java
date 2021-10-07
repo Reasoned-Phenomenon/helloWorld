@@ -117,4 +117,56 @@ public class EmpDAO extends DAO{
 		
 	}
 	
+	public int checkEmp(int checkId) {
+		connect();
+		
+		String sql = "SELECT * FROM empl_demo order by 1 desc";
+		
+		try {
+			
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			
+			while(rs.next()) {
+				int target = rs.getInt("employee_id");
+					if (target == checkId) {
+						return 1;
+					}
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return -1;
+	}
+	
+	//교수님
+	//데이터가 있거나 , 에러 =>false
+	//없는게 확실해 => true
+	public boolean checkId(String id) {
+		
+		connect();
+		String sql = "SELECT * FROM empl_demo where employee_id = ?";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, id);
+			rs = psmt.executeQuery();
+			
+			if ( rs.next()) {
+				return false;
+			} else {
+				return true;
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return false;
+	}
+	
 }
