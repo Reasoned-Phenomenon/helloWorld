@@ -1,35 +1,38 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<title>dom/empList.html</title>
-<style>
-	* {
-		font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-	}
-
-
-</style>
+	<meta charset="UTF-8">
+	<title>dom/empList.html</title>
+	<style>
+		* {
+			font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+		}
+	</style>
 </head>
+
 <body>
 	<h3>사원등록</h3>
 
-	<div id = "add">
-		<div class="field">사원번호: <input type="text" id = "empId"></div>
-		<div class="field">이름: <input type="text" id = "lname"></div>
-		<div class="field">이메일: <input type="text" id = "email"></div>
-		<div class="field">입사일자: <input type="date" id = "hireDate"></div>
-		<div class="field">직무: <input type="text" id = "job" value="IT_PROG"></div>
+	<div id="add">
+		<div class="field">사원번호: <input type="text" id="empId"></div>
+		<div class="field">이름: <input type="text" id="lname"></div>
+		<div class="field">이메일: <input type="text" id="email"></div>
+		<div class="field">입사일자: <input type="date" id="hireDate"></div>
+		<div class="field">직무: <input type="text" id="job" value="IT_PROG"></div>
 		<button id="addBtn">등록</button>
 		<button id="updateBtn">변경</button>
 	</div>
 
-	
+
 	<div id="show">
 	</div>
-	
+
 	<script src="emp.js"></script>
 	<script>
+
+		
+		//등록 버튼
 		document.getElementById('addBtn').onclick = function () {
 			//사용자 입력값 가져와서...
 			// ajax() : 서버로 데이터 전송
@@ -45,7 +48,7 @@
 			//아이디값을 가지고 서버에 존재여부 체크.
 			//ajax > 서블릿 > EmpDAO : 한건 조회해서 메소드.
 			//존재하면 true, 존재하지 않으면 false
-			
+
 			let xhttp = new XMLHttpRequest();
 			xhttp.onload = function () {
 				let exists = JSON.parse(xhttp.responseText); //샐행결과값이 responseText에 담김. {retCode:'OK'}나 {retCode:'NG'}
@@ -55,68 +58,109 @@
 					window.alert('이미 존재하는 아이디입니다.');
 					return;
 				}
-				
+
 				if (empId == "" || lname == "" || email == "" || hireDate == "" || job == "") {
 					window.alert("필수입력항목 확인!");
 					return;
 				}
-				
-				let param = 'id=' + empId + '&name=' + lname + '&email=' + email + '&hireDate=' + hireDate +'&job=' + job;
-				
-				console.log(empId);
-	
+
+				let param = 'id=' + empId + '&name=' + lname + '&email=' + email + '&hireDate=' + hireDate + '&job=' +	job;
+
+				//console.log(empId);
+				//한줄 추가
 				let xhtp = new XMLHttpRequest();
 				xhtp.onload = function () {
 					let data = JSON.parse(xhtp.responseText);
 					// {id:?, name:?, email:?, ..} -> object 타입
 					let tr = document.createElement('tr');
-					
-					for ( let field in data) {
-					let td = document.createElement('td');	
-					td.appendChild(document.createTextNode(data[field]));
-					tr.appendChild(td);
+
+					for (let field in data) {
+						let td = document.createElement('td');
+						td.appendChild(document.createTextNode(data[field]));
+						tr.appendChild(td);
 					}
-					
+
 					td = document.createElement('td');
 					let btnTag = document.createElement('button')
 					btnTag.innerHTML = '삭제';
 					btnTag.onclick = function () {
-					let id = this.parentNode.parentNode.firstChild.innerHTML;
-					let tr = this.parentNode.parentNode;
-					//삭제 서블릿. call
-					let xhtp = new XMLHttpRequest();
-					xhtp.onload = function () {
-					console.log(xhtp.responseText);
-					let result = JSON.parse(xhtp.responseText); // json -> obj
-					if (result.retCode == 'success' ) {
-						tr.remove();
-					} else {
-						window.alert('처리중 에러발생');
+						let id = this.parentNode.parentNode.firstChild.innerHTML;
+						let tr = this.parentNode.parentNode;
+						//삭제 서블릿. call
+						let xhtp = new XMLHttpRequest();
+						xhtp.onload = function () {
+							console.log(xhtp.responseText);
+							let result = JSON.parse(xhtp.responseText); // json -> obj
+							if (result.retCode == 'success') {
+								tr.remove();
+							} else {
+								window.alert('처리중 에러발생');
+							}
+						}
+						xhtp.open('get', '../delEmpServlet?delId=' + id); //삭제 서블릿 넣어주기
+						xhtp.send();
+
 					}
-				}
-				xhtp.open('get','../delEmpServlet?delId='+id); //삭제 서블릿 넣어주기
-				xhtp.send();
-				
-			   }       
-				td.appendChild(btnTag);	
-				tr.appendChild(td);
-					 
+					td.appendChild(btnTag);
+					tr.appendChild(td);
+
 					document.querySelector('#show>table').appendChild(tr);
-					
+
 				}
-	
-				xhtp.open('post','../AddEmpServlet');
+
+				xhtp.open('post', '../AddEmpServlet');
 				xhtp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 				xhtp.send(param);
 
 			}
 
-			xhttp.open('get', '../checkEmpServlet?checkId='+empId);
+			xhttp.open('get', '../checkEmpServlet?checkId=' + empId);
 			xhttp.send();
 
 		}
 
+		//변경 버튼
+		document.getElementById('updateBtn').onclick = function () {
+
+			let empId = document.getElementById('empId').value;
+			let lname = document.getElementById('lname').value;
+			let email = document.getElementById('email').value;
+			let hireDate = document.getElementById('hireDate').value;
+			let job = document.getElementById('job').value;
+			
+			let param = 'id=' + empId + '&name=' + lname + '&email=' + email + '&hireDate=' + hireDate + '&job=' + job;
+
+			let xhtp = new XMLHttpRequest();
+			xhtp.onload = function () {
+				//DB데이터 전송
+				//console.log(xhtp.responseText);
+				let data = JSON.parse(xhtp.responseText);
+
+				if (empId == "" || lname == "" || email == "" || hireDate == "" || job == "") {
+					window.alert("필수입력항목 확인!");
+					return;
+				}
+
+			}
+			
+			xhtp.open('post', '../updateEmpServlet');
+			xhtp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xhtp.send(param);
+
+			//화면상 변화
+			let xhttp = new XMLHttpRequest();
+			xhttp.onload = function () {
+
+				let data = JSON.parse(xhttp.responseText);
+				//테이블 수정
+				reNew(data);
+			}
+			
+			xhttp.open('get', '../empJsonServlet.json');
+			xhttp.send();
+		}
 
 	</script>
 </body>
+
 </html>

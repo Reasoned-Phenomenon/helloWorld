@@ -37,7 +37,7 @@ function showEmpList(data) {
 
         tr = document.createElement('tr');
         tr.onclick = function (e) {
-            console.log(this,e);
+            //console.log(this,e);
             
             document.getElementById('empId').value = this.childNodes[0].innerHTML; //id값
             document.getElementById('lname').value = this.childNodes[1].innerHTML; //id값
@@ -103,6 +103,13 @@ function showEmpList(data) {
         table.appendChild(tr);
     }
     document.getElementById('show').appendChild(table);
+}
+
+function reNew (data) {
+    let target = document.querySelector('#show');
+    target.innerHTML="";
+
+    showEmpList(data);
 }
 		
 		

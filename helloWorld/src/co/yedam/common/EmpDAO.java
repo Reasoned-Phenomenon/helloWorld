@@ -72,23 +72,29 @@ public class EmpDAO extends DAO{
 		
 	}
 	
-	public void updateEmp(String id, String phone, String salary) {
+	public boolean updateEmp(Employee emp) {
 		
-		connect(); //conn = dbconnection.Connection
-		String sql = "update empl_demo set phone_number=?, salary=? where employee_id=?";
+		connect(); 
+		String sql = "update empl_demo set last_name=?, email=?, hire_date=?, job_id=? where employee_id=?";
 		
 		try {
-			psmt = conn.prepareStatement(sql); //Employee emp = new Employee();
-			psmt.setString(1, phone);
-			psmt.setString(2, salary);
-			psmt.setString(3, id);
+			
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, emp.getLastName());
+			psmt.setString(2, emp.getEmail());
+			psmt.setString(3, emp.getHireDate());
+			psmt.setString(4, emp.getJobId());
+			psmt.setInt(5, emp.getEmployeeId());
 			int r = psmt.executeUpdate();
 			System.out.println(r+" 건 수정됨.");
+			return true;
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			disconnect();
 		}
+		return false;
 		
 	}
 	
